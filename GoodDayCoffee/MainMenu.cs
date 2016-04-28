@@ -30,7 +30,6 @@ namespace GoodDayCoffee
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            
             sql = "SELECT CoffeeName AS [Name], CoffeeType AS [Type], CoffeeOrigin AS [Origin], CoffeeStrength AS [Strength], CoffeePrice AS [Price], CoffeeQuantity AS [Quantity], CoffeeImage, CoffeeDesc, CoffeeId  FROM Coffee";
             //sql = "SELECT CoffeeName AS [Name], CoffeeType AS [Type], CoffeeOrigin AS [Origin], CoffeeStrength AS [Strength], CoffeePrice AS [Price], CoffeeQuantity AS [Quantity], CoffeeImage, CoffeeDesc, CoffeeId  FROM Coffee";
             BindDataToGrid();
@@ -41,6 +40,7 @@ namespace GoodDayCoffee
 
             CheckLowStocks();
             CheckStocks();
+            BindOrderToGrid();
         }
 
         private void BindDataToGrid()
@@ -52,6 +52,17 @@ namespace GoodDayCoffee
             dataadapter.Fill(ds);
             conn.Close();
             dg_Coffee.DataSource = ds;
+        }
+
+        private void BindOrderToGrid()
+        {
+            sql = "SELECT * FROM [Order]";
+            SqlDataAdapter dataadapter = new SqlDataAdapter(sql, conn);
+            DataTable ds = new DataTable();
+            conn.Open();
+            dataadapter.Fill(ds);
+            conn.Close();
+            dg_Order.DataSource = ds;
         }
         
         private void dg_Coffee_SelectionChanged(object sender, EventArgs e)
@@ -353,9 +364,10 @@ namespace GoodDayCoffee
             /* in above line the program is selecting the whole data from table and the matching it with the user name and password provided by user. */
             DataTable dt = new DataTable(); //this is creating a virtual table  
             sda.Fill(dt);
-            if (dt.Rows[0][0].ToString() != null)
+            if (dt.Rows.Count > 0)
             {
-                MessageBox.Show("Please update stocks of " + dt.Rows[0]["CoffeeName"] + ".");
+                    MessageBox.Show("Please update stocks of " + dt.Rows[0]["CoffeeName"] + ".");
+               
             }
         }
 
@@ -363,6 +375,25 @@ namespace GoodDayCoffee
         {
             CheckStocks();
         }
-        
+
+        private void dg_Order_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dg_Order.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = dg_Order.SelectedCells[0].RowIndex;
+
+                DataGridViewRow selectedRow = dg_Order.Rows[selectedrowindex];
+
+                txt_OrderNo.Text = Convert.ToString(selectedRow.Cells[0].Value);
+                txt_customerName.Text = Convert.ToString(selectedRow.Cells["FirstName"].Value) + " " + Convert.ToString(selectedRow.Cells["LastName"].Value);
+                txt_OrderStatus.SelectedValue = Convert.ToString(selectedRow.Cells["OrderStatus"].Value);
+                txt_CustomerStreet.Text = Convert.ToString(selectedRow.Cells["Street"].Value);
+                txt_customerPostcode.Text = Convert.ToString(selectedRow.Cells["PostCode"].Value);
+                txt_CustomerCounty.Text = Convert.ToString(selectedRow.Cells["County"].Value);
+                txt_CustomerCity.Text = Convert.ToString(selectedRow.Cells["Town"].Value);
+                txt_CustomerPhone.Text = Convert.ToString(selectedRow.Cells["Phone"].Value);
+
+            }
+        }
     }
 }

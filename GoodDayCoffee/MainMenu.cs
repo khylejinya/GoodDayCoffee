@@ -438,5 +438,28 @@ namespace GoodDayCoffee
             sql = "SELECT * FROM [Order] WHERE OrderID LIKE '%" + txt_SearchOrder.Text + "' OR OrderStatus LIKE '%" + txt_Search.Text + "' OR Town LIKE '%" + txt_CustomerCity.Text + "' OR County LIKE '%" + txt_CustomerCounty.Text + "'";
             BindOrderToGrid();
         }
+
+        private void dg_Order_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            foreach (DataGridViewRow row in dg_Order.Rows)
+            {
+                if (row.Cells["OrderStatus"].Value.ToString() == "Pending")
+                {
+                    row.DefaultCellStyle.BackColor = Color.Salmon;
+                }
+                else if (Convert.ToString(row.Cells["OrderStatus"].Value) == "Completed")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightBlue;
+                }
+                else if (Convert.ToString(row.Cells["OrderStatus"].Value) == "Dispatched")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.Black;
+                }
+            }
+        }
     }
 }

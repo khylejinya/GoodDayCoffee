@@ -34,15 +34,15 @@
             this.OrderTab = new System.Windows.Forms.TabPage();
             this.dg_Order = new System.Windows.Forms.DataGridView();
             this.label31 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txt_SearchOrder = new System.Windows.Forms.TextBox();
+            this.dg_OrderItem = new System.Windows.Forms.DataGridView();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.txt_customerName = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.txt_OrderNo = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.txt_OrderStatus = new System.Windows.Forms.ComboBox();
+            this.cb_OrderStatus = new System.Windows.Forms.ComboBox();
             this.label36 = new System.Windows.Forms.Label();
             this.txt_CustomerStreet = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -120,10 +120,10 @@
             this.label28 = new System.Windows.Forms.Label();
             this.cb_SortBy = new System.Windows.Forms.ComboBox();
             this.MainControlTab = new System.Windows.Forms.TabControl();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btn_UpdateStatus = new System.Windows.Forms.Button();
             this.OrderTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_Order)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_OrderItem)).BeginInit();
             this.EditCoffeeTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_EditImage)).BeginInit();
             this.AddCoffeeTab.SuspendLayout();
@@ -148,7 +148,7 @@
             // 
             // OrderTab
             // 
-            this.OrderTab.Controls.Add(this.btnUpdate);
+            this.OrderTab.Controls.Add(this.btn_UpdateStatus);
             this.OrderTab.Controls.Add(this.txt_CustomerPhone);
             this.OrderTab.Controls.Add(this.txt_customerPostcode);
             this.OrderTab.Controls.Add(this.txt_CustomerCounty);
@@ -156,18 +156,18 @@
             this.OrderTab.Controls.Add(this.txt_CustomerStreet);
             this.OrderTab.Controls.Add(this.txt_OrderNo);
             this.OrderTab.Controls.Add(this.txt_customerName);
-            this.OrderTab.Controls.Add(this.textBox1);
+            this.OrderTab.Controls.Add(this.txt_SearchOrder);
             this.OrderTab.Controls.Add(this.label40);
             this.OrderTab.Controls.Add(this.label39);
             this.OrderTab.Controls.Add(this.label38);
             this.OrderTab.Controls.Add(this.label37);
             this.OrderTab.Controls.Add(this.label36);
-            this.OrderTab.Controls.Add(this.txt_OrderStatus);
+            this.OrderTab.Controls.Add(this.cb_OrderStatus);
             this.OrderTab.Controls.Add(this.label35);
             this.OrderTab.Controls.Add(this.label34);
             this.OrderTab.Controls.Add(this.label33);
             this.OrderTab.Controls.Add(this.label32);
-            this.OrderTab.Controls.Add(this.dataGridView1);
+            this.OrderTab.Controls.Add(this.dg_OrderItem);
             this.OrderTab.Controls.Add(this.label31);
             this.OrderTab.Controls.Add(this.dg_Order);
             this.OrderTab.Location = new System.Drawing.Point(4, 22);
@@ -180,9 +180,14 @@
             // 
             // dg_Order
             // 
+            this.dg_Order.AllowUserToAddRows = false;
+            this.dg_Order.AllowUserToDeleteRows = false;
             this.dg_Order.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg_Order.Location = new System.Drawing.Point(16, 32);
+            this.dg_Order.MultiSelect = false;
             this.dg_Order.Name = "dg_Order";
+            this.dg_Order.ReadOnly = true;
+            this.dg_Order.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dg_Order.Size = new System.Drawing.Size(648, 98);
             this.dg_Order.TabIndex = 0;
             this.dg_Order.SelectionChanged += new System.EventHandler(this.dg_Order_SelectionChanged);
@@ -196,20 +201,26 @@
             this.label31.TabIndex = 1;
             this.label31.Text = "Search Order:";
             // 
-            // textBox1
+            // txt_SearchOrder
             // 
-            this.textBox1.Location = new System.Drawing.Point(95, 10);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(172, 20);
-            this.textBox1.TabIndex = 2;
+            this.txt_SearchOrder.Location = new System.Drawing.Point(95, 10);
+            this.txt_SearchOrder.Name = "txt_SearchOrder";
+            this.txt_SearchOrder.Size = new System.Drawing.Size(172, 20);
+            this.txt_SearchOrder.TabIndex = 2;
+            this.txt_SearchOrder.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // dataGridView1
+            // dg_OrderItem
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 155);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(648, 88);
-            this.dataGridView1.TabIndex = 3;
+            this.dg_OrderItem.AllowUserToAddRows = false;
+            this.dg_OrderItem.AllowUserToDeleteRows = false;
+            this.dg_OrderItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dg_OrderItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_OrderItem.Location = new System.Drawing.Point(16, 155);
+            this.dg_OrderItem.Name = "dg_OrderItem";
+            this.dg_OrderItem.ReadOnly = true;
+            this.dg_OrderItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dg_OrderItem.Size = new System.Drawing.Size(648, 88);
+            this.dg_OrderItem.TabIndex = 3;
             // 
             // label32
             // 
@@ -231,6 +242,7 @@
             // 
             // txt_customerName
             // 
+            this.txt_customerName.Enabled = false;
             this.txt_customerName.Location = new System.Drawing.Point(107, 254);
             this.txt_customerName.Name = "txt_customerName";
             this.txt_customerName.Size = new System.Drawing.Size(206, 20);
@@ -247,6 +259,7 @@
             // 
             // txt_OrderNo
             // 
+            this.txt_OrderNo.Enabled = false;
             this.txt_OrderNo.Location = new System.Drawing.Point(107, 280);
             this.txt_OrderNo.Name = "txt_OrderNo";
             this.txt_OrderNo.Size = new System.Drawing.Size(206, 20);
@@ -261,13 +274,17 @@
             this.label35.TabIndex = 9;
             this.label35.Text = "Order Status:";
             // 
-            // txt_OrderStatus
+            // cb_OrderStatus
             // 
-            this.txt_OrderStatus.FormattingEnabled = true;
-            this.txt_OrderStatus.Location = new System.Drawing.Point(107, 306);
-            this.txt_OrderStatus.Name = "txt_OrderStatus";
-            this.txt_OrderStatus.Size = new System.Drawing.Size(206, 21);
-            this.txt_OrderStatus.TabIndex = 10;
+            this.cb_OrderStatus.FormattingEnabled = true;
+            this.cb_OrderStatus.Items.AddRange(new object[] {
+            "Pending",
+            "Completed",
+            "Dispatched"});
+            this.cb_OrderStatus.Location = new System.Drawing.Point(107, 306);
+            this.cb_OrderStatus.Name = "cb_OrderStatus";
+            this.cb_OrderStatus.Size = new System.Drawing.Size(206, 21);
+            this.cb_OrderStatus.TabIndex = 10;
             // 
             // label36
             // 
@@ -280,6 +297,7 @@
             // 
             // txt_CustomerStreet
             // 
+            this.txt_CustomerStreet.Enabled = false;
             this.txt_CustomerStreet.Location = new System.Drawing.Point(458, 251);
             this.txt_CustomerStreet.Name = "txt_CustomerStreet";
             this.txt_CustomerStreet.Size = new System.Drawing.Size(206, 20);
@@ -296,6 +314,7 @@
             // 
             // txt_CustomerCity
             // 
+            this.txt_CustomerCity.Enabled = false;
             this.txt_CustomerCity.Location = new System.Drawing.Point(458, 276);
             this.txt_CustomerCity.Name = "txt_CustomerCity";
             this.txt_CustomerCity.Size = new System.Drawing.Size(206, 20);
@@ -312,6 +331,7 @@
             // 
             // txt_CustomerCounty
             // 
+            this.txt_CustomerCounty.Enabled = false;
             this.txt_CustomerCounty.Location = new System.Drawing.Point(458, 302);
             this.txt_CustomerCounty.Name = "txt_CustomerCounty";
             this.txt_CustomerCounty.Size = new System.Drawing.Size(206, 20);
@@ -328,6 +348,7 @@
             // 
             // txt_customerPostcode
             // 
+            this.txt_customerPostcode.Enabled = false;
             this.txt_customerPostcode.Location = new System.Drawing.Point(458, 328);
             this.txt_customerPostcode.Name = "txt_customerPostcode";
             this.txt_customerPostcode.Size = new System.Drawing.Size(206, 20);
@@ -344,6 +365,7 @@
             // 
             // txt_CustomerPhone
             // 
+            this.txt_CustomerPhone.Enabled = false;
             this.txt_CustomerPhone.Location = new System.Drawing.Point(458, 354);
             this.txt_CustomerPhone.Name = "txt_CustomerPhone";
             this.txt_CustomerPhone.Size = new System.Drawing.Size(206, 20);
@@ -1017,14 +1039,15 @@
             this.MainControlTab.Size = new System.Drawing.Size(695, 403);
             this.MainControlTab.TabIndex = 0;
             // 
-            // btnUpdate
+            // btn_UpdateStatus
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(103, 342);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(127, 25);
-            this.btnUpdate.TabIndex = 19;
-            this.btnUpdate.Text = "Update Status";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btn_UpdateStatus.Location = new System.Drawing.Point(103, 342);
+            this.btn_UpdateStatus.Name = "btn_UpdateStatus";
+            this.btn_UpdateStatus.Size = new System.Drawing.Size(127, 25);
+            this.btn_UpdateStatus.TabIndex = 19;
+            this.btn_UpdateStatus.Text = "Update Status";
+            this.btn_UpdateStatus.UseVisualStyleBackColor = true;
+            this.btn_UpdateStatus.Click += new System.EventHandler(this.btn_UpdateStatus_Click);
             // 
             // MainMenu
             // 
@@ -1038,7 +1061,7 @@
             this.OrderTab.ResumeLayout(false);
             this.OrderTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_Order)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dg_OrderItem)).EndInit();
             this.EditCoffeeTab.ResumeLayout(false);
             this.EditCoffeeTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_EditImage)).EndInit();
@@ -1058,7 +1081,7 @@
         private System.Windows.Forms.Timer timerRefresh;
         private System.Windows.Forms.Timer timerStockUpdate;
         private System.Windows.Forms.TabPage OrderTab;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btn_UpdateStatus;
         private System.Windows.Forms.TextBox txt_CustomerPhone;
         private System.Windows.Forms.TextBox txt_customerPostcode;
         private System.Windows.Forms.TextBox txt_CustomerCounty;
@@ -1066,18 +1089,18 @@
         private System.Windows.Forms.TextBox txt_CustomerStreet;
         private System.Windows.Forms.TextBox txt_OrderNo;
         private System.Windows.Forms.TextBox txt_customerName;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_SearchOrder;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.ComboBox txt_OrderStatus;
+        private System.Windows.Forms.ComboBox cb_OrderStatus;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dg_OrderItem;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.DataGridView dg_Order;
         private System.Windows.Forms.TabPage EditCoffeeTab;

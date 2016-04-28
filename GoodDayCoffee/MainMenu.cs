@@ -40,6 +40,9 @@ namespace GoodDayCoffee
 
             CheckLowStocks();
             CheckStocks();
+
+
+            sql = "SELECT * FROM [Order]";
             BindOrderToGrid();
         }
 
@@ -56,7 +59,6 @@ namespace GoodDayCoffee
 
         private void BindOrderToGrid()
         {
-            sql = "SELECT * FROM [Order]";
             SqlDataAdapter dataadapter = new SqlDataAdapter(sql, conn);
             DataTable ds = new DataTable();
             conn.Open();
@@ -386,14 +388,55 @@ namespace GoodDayCoffee
 
                 txt_OrderNo.Text = Convert.ToString(selectedRow.Cells[0].Value);
                 txt_customerName.Text = Convert.ToString(selectedRow.Cells["FirstName"].Value) + " " + Convert.ToString(selectedRow.Cells["LastName"].Value);
-                txt_OrderStatus.SelectedValue = Convert.ToString(selectedRow.Cells["OrderStatus"].Value);
+                cb_OrderStatus.Text = Convert.ToString(selectedRow.Cells["OrderStatus"].Value);
                 txt_CustomerStreet.Text = Convert.ToString(selectedRow.Cells["Street"].Value);
                 txt_customerPostcode.Text = Convert.ToString(selectedRow.Cells["PostCode"].Value);
                 txt_CustomerCounty.Text = Convert.ToString(selectedRow.Cells["County"].Value);
                 txt_CustomerCity.Text = Convert.ToString(selectedRow.Cells["Town"].Value);
                 txt_CustomerPhone.Text = Convert.ToString(selectedRow.Cells["Phone"].Value);
 
+                BindOrderItemsToGrid();
             }
+        }
+
+        private void BindOrderItemsToGrid()
+        {
+            sql = "SELECT Id as [Item ID], CoffeeID, Grind, Quantity, Total as [Item Total] FROM [OrderItem] WHERE OrderID = " + txt_OrderNo.Text;
+            SqlDataAdapter dataadapter = new SqlDataAdapter(sql, conn);
+            DataTable ds = new DataTable();
+            conn.Open();
+            dataadapter.Fill(ds);
+            conn.Close();
+            dg_OrderItem.DataSource = ds;
+        }
+
+        private void btn_UpdateStatus_Click(object sender, EventArgs e)
+        {
+            SqlCommand updateDetails = new SqlCommand("UPDATE [Order] SET OrderStatus=@OrderStatus WHERE OrderID=@OrderID;", conn);
+
+            //Also, to avoid SQL Injection, parameterized queries were used, rather than string concatenation. 
+            updateDetails.Parameters.Add(new SqlParameter("@OrderStatus", cb_OrderStatus.Text));
+            updateDetails.Parameters.Add(new SqlParameter("@OrderID", txt_OrderNo.Text));
+
+            DialogResult dialogResult = MessageBox.Show("Update Order No. '" + txt_OrderNo.Text + "' to " + cb_OrderStatus.Text + "?", "Update Order Status", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                conn.Open();
+                updateDetails.ExecuteNonQuery();
+                conn.Close();
+
+                MessageBox.Show("Order status has been updated.");
+
+                sql = "SELECT * FROM [Order]";
+                BindOrderToGrid();
+
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            sql = "SELECT * FROM [Order] WHERE OrderID LIKE '%" + txt_SearchOrder.Text + "' OR OrderStatus LIKE '%" + txt_Search.Text + "' OR Town LIKE '%" + txt_CustomerCity.Text + "' OR County LIKE '%" + txt_CustomerCounty.Text + "'";
+            BindOrderToGrid();
         }
     }
 }

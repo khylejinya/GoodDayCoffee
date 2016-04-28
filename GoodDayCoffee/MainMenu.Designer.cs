@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.timerStockUpdate = new System.Windows.Forms.Timer(this.components);
             this.OrderTab = new System.Windows.Forms.TabPage();
@@ -121,6 +122,9 @@
             this.dg_Coffee = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.MainControlTab = new System.Windows.Forms.TabControl();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
             this.OrderTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_OrderItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dg_Order)).BeginInit();
@@ -148,6 +152,9 @@
             // 
             // OrderTab
             // 
+            this.OrderTab.Controls.Add(this.label43);
+            this.OrderTab.Controls.Add(this.label42);
+            this.OrderTab.Controls.Add(this.label41);
             this.OrderTab.Controls.Add(this.btn_UpdateStatus);
             this.OrderTab.Controls.Add(this.txt_CustomerPhone);
             this.OrderTab.Controls.Add(this.txt_customerPostcode);
@@ -815,6 +822,7 @@
             // 
             // HomePage
             // 
+            this.HomePage.BackColor = System.Drawing.Color.White;
             this.HomePage.Controls.Add(this.cb_SortBy);
             this.HomePage.Controls.Add(this.label28);
             this.HomePage.Controls.Add(this.label27);
@@ -841,7 +849,6 @@
             this.HomePage.Size = new System.Drawing.Size(687, 377);
             this.HomePage.TabIndex = 0;
             this.HomePage.Text = "Home";
-            this.HomePage.UseVisualStyleBackColor = true;
             // 
             // cb_SortBy
             // 
@@ -1050,12 +1057,44 @@
             this.MainControlTab.Size = new System.Drawing.Size(695, 403);
             this.MainControlTab.TabIndex = 0;
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.ForeColor = System.Drawing.Color.LightBlue;
+            this.label41.Location = new System.Drawing.Point(549, 133);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(57, 13);
+            this.label41.TabIndex = 20;
+            this.label41.Text = "Completed";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.ForeColor = System.Drawing.Color.Salmon;
+            this.label42.Location = new System.Drawing.Point(504, 133);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(46, 13);
+            this.label42.TabIndex = 21;
+            this.label42.Text = "Pending";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.ForeColor = System.Drawing.Color.LightGreen;
+            this.label43.Location = new System.Drawing.Point(603, 133);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(61, 13);
+            this.label43.TabIndex = 22;
+            this.label43.Text = "Dispatched";
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Wheat;
             this.ClientSize = new System.Drawing.Size(719, 420);
             this.Controls.Add(this.MainControlTab);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainMenu";
             this.Text = "Main Menu";
             this.Load += new System.EventHandler(this.MainMenu_Load);
@@ -1171,5 +1210,8 @@
         private System.Windows.Forms.DataGridView dg_Coffee;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl MainControlTab;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label43;
     }
 }
